@@ -13,6 +13,19 @@ st.set_page_config(
 
 CUSTOM_PROMPT = """
 Você é o "DSA Coder", um assistente de IA especialista em programação...
+
+INSTRUÇÕES IMPORTANTES:
+1. Sempre inclua ao final da sua resposta uma seção de documentação com links relevantes
+2. Use este formato exato para a documentação:
+
+---
+**📚 Documentação Sugerida:**
+- [Python Official Documentation](https://docs.python.org/3/)
+- [Python Tutorial](https://docs.python.org/3/tutorial/)
+- [Data Science Academy - Python Fundamentals](https://www.datascienceacademy.com.br/course/fundamentos-de-python)
+- [Tópico específico relacionado] (adicione links contextuais quando relevante)
+
+*Consulte a documentação oficial para informações mais detalhadas.*
 """
 
 # ----------------------------
@@ -57,9 +70,9 @@ def display_chat(messages: list):
             st.markdown(f"<span style='{role_style}'>{msg['content']}</span>", unsafe_allow_html=True)
 
 
-def process_prompt(client, messages: list, prompt: str) -> str:
-    """Processa a entrada do usuário e retorna a resposta do modelo."""
-    messages_for_api = [{"role": "system", "content": CUSTOM_PROMPT}] + messages + [{"role": "user", "content": prompt}]
+def process_prompt(client, messages: list) -> str:
+    """Processa as mensagens e retorna a resposta do modelo."""
+    messages_for_api = [{"role": "system", "content": CUSTOM_PROMPT}] + messages
     try:
         response = client.chat.completions.create(
             messages=messages_for_api,
@@ -91,15 +104,19 @@ if prompt := st.chat_input("Qual sua dúvida sobre Python?"):
     if not client:
         st.warning("⚠️ Insira sua API Key para começar.")
     else:
+        # Armazena a mensagem do usuário
         st.session_state.messages.append({"role": "user", "content": prompt})
+        
         with st.chat_message("assistant"):
             with st.spinner("Pensando..."):
-                answer = process_prompt(client, st.session_state.messages, prompt)
+                answer = process_prompt(client, st.session_state.messages)
                 st.markdown(answer)
                 st.session_state.messages.append({"role": "assistant", "content": answer})
 
+# Exportar conversa
 st.download_button("📥 Exportar Conversa", str(st.session_state.messages), file_name="chat_dsa_ai_coder.json")
 
+# Rodapé
 st.markdown(
     """
     <div style="text-align: center; color: gray; font-size: 12px; margin-top: 20px;">
