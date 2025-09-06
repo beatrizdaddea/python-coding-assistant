@@ -21,8 +21,6 @@ INSTRUÇÕES IMPORTANTES:
 ---
 **📚 Documentação Sugerida:**
 - [Python Official Documentation](https://docs.python.org/3/)
-- [Python Tutorial](https://docs.python.org/3/tutorial/)
-- [Data Science Academy - Python Fundamentals](https://www.datascienceacademy.com.br/course/fundamentos-de-python)
 - [Tópico específico relacionado] (adicione links contextuais quando relevante)
 
 *Consulte a documentação oficial para informações mais detalhadas.*
