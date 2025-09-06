@@ -15,6 +15,10 @@ O projeto foi desenvolvido como parte da formação da **Data Science Academy (D
 
 ![Demonstração do DSA AI Coder](./assets//demo.gif)
 
+[**🔗 Acessar a Aplicação Online**](https://beatrizdaddea-python-coding-assistant-dsa-assistente-jq64g1.streamlit.app/)
+
+---
+
 ## 🚀 Objetivo do Projeto
 O **DSA AI Coder** é uma aplicação prática, acessível e didática que:  
 - Responde perguntas sobre **código, algoritmos, bibliotecas e boas práticas em Python**.  
